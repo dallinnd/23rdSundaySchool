@@ -1,33 +1,27 @@
-const CACHE_NAME = 'lessons-cache-v1';
-const ASSETS = [
-    './',
-    './index.html',
-    './lesson.html',
-    './reading.html',
-    './styles.css',
-    './app.js',
-    './manifest.json'
-];
+// A simple Service Worker that intentionally caches nothing.
 
-self.addEventListener('install', event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(ASSETS))
-    );
+self.addEventListener('install', (event) => {
+    // Forces this new service worker to take over immediately
+    self.skipWaiting(); 
 });
 
 self.addEventListener('activate', (event) => {
+    // This hunts down and deletes your old 'lessons-cache-v1' 
+    // so no devices are stuck on the old version.
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
-                    // Deletes all existing caches
                     return caches.delete(cacheName); 
                 })
             );
         })
     );
-    // Forces the new service worker to take control immediately
     self.clients.claim(); 
 });
 
+self.addEventListener('fetch', (event) => {
+    // Always fetch directly from GitHub, ignoring the cache entirely.
+    // Because we aren't caching, you never have to list new HTML files here.
+    event.respondWith(fetch(event.request));
+});
