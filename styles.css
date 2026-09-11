@@ -116,7 +116,7 @@ h2 {
 /* Lesson Content */
 .lesson-image {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 2rem;
     height: auto;
     object-fit: cover;
 }
@@ -154,7 +154,7 @@ h2 {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(228, 165, 12, 0.3);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
