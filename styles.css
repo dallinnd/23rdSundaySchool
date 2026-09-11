@@ -28,7 +28,7 @@ header {
 }
 
 h2 {
-    color: var(--accent-color);
+    color: var(--text-color);
     font-weight: 600;
     front-size: 0.9 rem;
     margin: 0.5rem 0 0 0;    
