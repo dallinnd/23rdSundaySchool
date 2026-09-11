@@ -13,6 +13,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* ADD THESE TWO LINES FOR iOS SAFARI */
+    touch-action: pan-y; 
+    overscroll-behavior-x: none;
 }
 
 /* Headers */
