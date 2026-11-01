@@ -221,7 +221,7 @@ h2 {
 /* Flip Note Card Tile */
 .flip-tile {
     width: 100%;
-    aspect-ratio: 10 / 16;
+    aspect-ratio: 3 / 4;
     min-height: 250px;
     perspective: 1000px;
     -webkit-perspective: 1000px;
