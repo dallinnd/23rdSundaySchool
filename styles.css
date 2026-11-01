@@ -217,3 +217,229 @@ h2 {
     line-height: 1.5;
     flex: 1; /* Allows the text to take up all remaining space */
 }
+
+/* Flip Note Card Tile */
+.flip-tile {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 250px;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    outline: none;
+    border-radius: 2rem;
+    box-sizing: border-box;
+}
+
+.flip-tile:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
+.flip-tile-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    border-radius: 2rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.flip-tile.flipped .flip-tile-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-tile-front,
+.flip-tile-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Front Face */
+.flip-tile-front {
+    transform: rotateY(0deg); /* Safari fix */
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(228, 165, 12, 0.3);
+    position: relative;
+}
+
+.flip-tile-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 2rem;
+}
+
+.flip-tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.65) 100%);
+    border-radius: 2rem;
+    pointer-events: none;
+}
+
+.flip-tile-front-content {
+    position: absolute;
+    bottom: 1.1rem;
+    left: 1.3rem;
+    right: 7.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    pointer-events: none;
+}
+
+.flip-tile-front-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--accent-color);
+}
+
+.flip-tile-front-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.25;
+}
+
+.flip-tile-hint {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(30, 45, 43, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-color);
+    border: 1px solid rgba(228, 165, 12, 0.5);
+    padding: 0.38rem 0.85rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.flip-tile:hover .flip-tile-hint {
+    background: rgba(30, 45, 43, 0.96);
+    border-color: var(--accent-color);
+}
+
+.flip-tile:active .flip-tile-inner {
+    transform: scale(0.99);
+}
+
+.flip-tile.flipped:active .flip-tile-inner {
+    transform: rotateY(180deg) scale(0.99);
+}
+
+.flip-tile-hint .flip-icon {
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--accent-color);
+    display: inline-block;
+    transition: transform 0.4s ease;
+}
+
+.flip-tile:hover .flip-icon {
+    transform: rotate(45deg);
+}
+
+/* Back Face (Note Card) */
+.flip-tile-back {
+    transform: rotateY(180deg);
+    background-color: #293836;
+    background-image: 
+        repeating-linear-gradient(
+            transparent,
+            transparent 27px,
+            rgba(225, 224, 213, 0.07) 28px
+        );
+    background-position: 0 3.3rem;
+    border: 1px solid rgba(228, 165, 12, 0.4);
+    border-top: 5px solid var(--accent-color);
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.flip-tile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(228, 165, 12, 0.2);
+}
+
+.flip-tile-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--accent-color);
+}
+
+.flip-tile-flip-back {
+    font-size: 0.75rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.flip-tile-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0.2rem 0;
+}
+
+.flip-tile-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: 0 0 0.4rem 0;
+}
+
+.flip-tile-text {
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0 0 0.6rem 0;
+    color: var(--text-color);
+}
+
+.flip-tile-prompt {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: rgba(225, 224, 213, 0.88);
+    margin: 0;
+}

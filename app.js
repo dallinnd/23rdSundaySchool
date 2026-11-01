@@ -42,3 +42,18 @@ document.addEventListener('touchend', e => {
     touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
 }, { passive: true });
+
+// Flip Note Card Support (Click & Keyboard)
+document.addEventListener('click', (e) => {
+    const flipTile = e.target.closest('.flip-tile');
+    if (flipTile && !flipTile.hasAttribute('onclick')) {
+        flipTile.classList.toggle('flipped');
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('flip-tile')) {
+        e.preventDefault();
+        e.target.classList.toggle('flipped');
+    }
+});
