@@ -509,24 +509,3 @@ h2 {
     background-color: #ffffff;
     color: var(--bg-color);
 }
-
-.rating-reset {
-    margin-top: 0.4rem;
-    padding: 0.9rem;
-    width: 100%;
-    border: 1px solid rgba(225, 224, 213, 0.25);
-    border-radius: 2rem;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: background-color 0.15s ease, transform 0.1s ease;
-}
-
-.rating-reset:active {
-    background-color: rgba(0, 0, 0, 0.35);
-    transform: scale(0.98);
-}
